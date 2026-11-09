@@ -1,727 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Glow & Co. | Nail + Lash Boutique</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --indigo: #5158BB;
-    --lilac: #F26DF9;
-    --pink: #EB4B98;
-    --ink: #191927;
-    --cream: #FBF7F4;
-    --soft: #F4F1FB;
-    --muted: #57576B;
-    --radius: 26px;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: "Inter", sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  .wrap {
-    width: min(1160px, calc(100% - 40px));
-    margin: 0 auto;
-  }
-
-  /* Header */
-  header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(251,247,244,.9);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(81,88,187,.12);
-  }
-
-  .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 0;
-  }
-
-  .logo {
-    font-family: "Fraunces", serif;
-    font-weight: 600;
-    font-size: 1.4rem;
-    color: var(--indigo);
-    letter-spacing: -.02em;
-  }
-
-  .logo span { color: var(--pink); }
-
-  .nav-links {
-    display: flex;
-    gap: 28px;
-  }
-
-  .nav-links a {
-    color: var(--ink);
-    text-decoration: none;
-    font-weight: 500;
-    font-size: .95rem;
-  }
-
-  .nav-links a:hover { color: var(--pink); }
-
-  .btn {
-    display: inline-block;
-    padding: 14px 26px;
-    border-radius: 999px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: transform .2s ease, background .2s ease, color .2s ease;
-  }
-
-  .btn:hover { transform: translateY(-2px); }
-
-  .btn-primary {
-    background: var(--pink);
-    color: #fff;
-  }
-
-  .btn-primary:hover { background: var(--indigo); }
-
-  .btn-outline {
-    border: 1.5px solid var(--indigo);
-    color: var(--indigo);
-  }
-
-  .btn-outline:hover {
-    background: var(--indigo);
-    color: #fff;
-  }
-
-  /* Hero */
-  .hero {
-    position: relative;
-    padding: 95px 0 75px;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  .hero::before,
-  .hero::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: .35;
-    z-index: -1;
-  }
-
-  .hero::before {
-    width: 360px; height: 360px;
-    background: var(--lilac);
-    top: -90px; left: -80px;
-  }
-
-  .hero::after {
-    width: 320px; height: 320px;
-    background: var(--pink);
-    bottom: -90px; right: -70px;
-  }
-
-  .tag {
-    display: inline-block;
-    background: rgba(81,88,187,.1);
-    color: var(--indigo);
-    padding: 8px 18px;
-    border-radius: 999px;
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    margin-bottom: 26px;
-  }
-
-  h1 {
-    font-family: "Fraunces", serif;
-    font-size: clamp(3rem, 7.5vw, 5.7rem);
-    line-height: 1;
-    letter-spacing: -.04em;
-    max-width: 940px;
-    margin: 0 auto;
-  }
-
-  h1 em {
-    font-style: italic;
-    color: var(--pink);
-  }
-
-  .hero p {
-    max-width: 640px;
-    margin: 28px auto 36px;
-    font-size: 1.08rem;
-    color: var(--muted);
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  /* Marquee */
-  .marquee {
-    background: var(--indigo);
-    color: #fff;
-    padding: 16px 0;
-    overflow: hidden;
-  }
-
-  .marquee-track {
-    display: flex;
-    gap: 40px;
-    width: max-content;
-    animation: move 22s linear infinite;
-  }
-
-  .marquee span {
-    font-family: "Fraunces", serif;
-    font-size: 1.05rem;
-    white-space: nowrap;
-  }
-
-  @keyframes move {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-
-  /* Questions */
-  .questions {
-    padding: 90px 0;
-    text-align: center;
-  }
-
-  .questions h2 {
-    font-family: "Fraunces", serif;
-    font-size: clamp(2.1rem, 5vw, 3.8rem);
-    line-height: 1.1;
-    letter-spacing: -.03em;
-    max-width: 900px;
-    margin: 0 auto 22px;
-  }
-
-  .questions h2 span {
-    color: var(--pink);
-  }
-
-  .questions p {
-    max-width: 620px;
-    margin: 0 auto;
-    color: var(--muted);
-    font-size: 1.06rem;
-  }
-
-  /* Services */
-  .services {
-    padding: 30px 0 90px;
-  }
-
-  .section-head {
-    max-width: 700px;
-    margin-bottom: 42px;
-  }
-
-  .section-head h2 {
-    font-family: "Fraunces", serif;
-    font-size: clamp(2.1rem, 4vw, 3.2rem);
-    letter-spacing: -.03em;
-    line-height: 1.08;
-    margin-bottom: 14px;
-  }
-
-  .section-head p {
-    color: var(--muted);
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  .service {
-    background: #fff;
-    border: 1px solid rgba(81,88,187,.13);
-    border-radius: var(--radius);
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    transition: transform .25s ease, box-shadow .25s ease;
-  }
-
-  .service:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 25px 50px rgba(81,88,187,.15);
-  }
-
-  .icon {
-    width: 54px;
-    height: 54px;
-    border-radius: 18px;
-    display: grid;
-    place-items: center;
-    font-size: 1.4rem;
-    margin-bottom: 18px;
-  }
-
-  .bg-indigo { background: rgba(81,88,187,.12); }
-  .bg-lilac { background: rgba(242,109,249,.16); }
-  .bg-pink { background: rgba(235,75,152,.14); }
-
-  .service h3 {
-    font-family: "Fraunces", serif;
-    font-size: 1.4rem;
-    letter-spacing: -.02em;
-    margin-bottom: 10px;
-  }
-
-  .service p {
-    color: var(--muted);
-    font-size: .96rem;
-  }
-
-  .service-foot {
-    margin-top: auto;
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: .9rem;
-    font-weight: 600;
-    border-top: 1px solid rgba(25,25,39,.08);
-  }
-
-  .service-foot span:first-child { color: var(--indigo); }
-  .service-foot span:last-child { color: #74748D; font-weight: 500; }
-
-  .service-link {
-    display: inline-block;
-    margin-top: 18px;
-    color: var(--pink);
-    font-weight: 700;
-    text-decoration: none;
-    font-size: .92rem;
-    letter-spacing: .04em;
-    text-transform: uppercase;
-  }
-
-  .service-link:hover { color: var(--indigo); }
-
-  /* About */
-  .about {
-    background: var(--soft);
-    padding: 95px 0;
-  }
-
-  .split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-  }
-
-  .split h2 {
-    font-family: "Fraunces", serif;
-    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-    line-height: 1.07;
-    letter-spacing: -.03em;
-    margin-bottom: 20px;
-  }
-
-  .split p {
-    color: var(--muted);
-    margin-bottom: 18px;
-  }
-
-  .pill-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 28px 0 34px;
-  }
-
-  .pill-list li {
-    background: #fff;
-    border: 1px solid rgba(81,88,187,.18);
-    color: var(--indigo);
-    padding: 9px 16px;
-    border-radius: 999px;
-    font-size: .88rem;
-    font-weight: 600;
-  }
-
-  .visual {
-    background: linear-gradient(135deg, var(--indigo), var(--pink) 65%, var(--lilac));
-    color: #fff;
-    border-radius: 36px;
-    min-height: 430px;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 44px;
-  }
-
-  .visual h3 {
-    font-family: "Fraunces", serif;
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    line-height: 1.15;
-    max-width: 360px;
-  }
-
-  /* Reviews */
-  .reviews {
-    padding: 90px 0;
-    text-align: center;
-  }
-
-  .reviews h2 {
-    font-family: "Fraunces", serif;
-    font-size: clamp(2.1rem, 4vw, 3.2rem);
-    letter-spacing: -.03em;
-    margin-bottom: 40px;
-  }
-
-  .review-track {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    padding-bottom: 16px;
-    scrollbar-width: none;
-  }
-
-  .review-track::-webkit-scrollbar { display: none; }
-
-  .review {
-    min-width: 320px;
-    background: #fff;
-    border: 1px solid rgba(81,88,187,.13);
-    border-radius: var(--radius);
-    padding: 30px;
-    text-align: left;
-  }
-
-  .review p {
-    font-family: "Fraunces", serif;
-    font-size: 1.12rem;
-    line-height: 1.45;
-    margin-bottom: 18px;
-  }
-
-  .review strong {
-    font-family: "Inter", sans-serif;
-    font-size: .88rem;
-    color: var(--indigo);
-  }
-
-  /* Booking */
-  .booking {
-    background: var(--indigo);
-    color: #fff;
-    padding: 95px 0;
-    text-align: center;
-  }
-
-  .booking h2 {
-    font-family: "Fraunces", serif;
-    font-size: clamp(2.3rem, 5vw, 4rem);
-    letter-spacing: -.03em;
-    line-height: 1.05;
-    margin-bottom: 18px;
-  }
-
-  .booking p {
-    max-width: 620px;
-    margin: 0 auto 34px;
-    color: rgba(255,255,255,.82);
-  }
-
-  .booking .btn-primary {
-    background: var(--lilac);
-    color: var(--ink);
-  }
-
-  .booking .btn-primary:hover {
-    background: #fff;
-  }
-
-  /* Footer */
-  footer {
-    background: var(--ink);
-    color: #fff;
-    padding: 65px 0 28px;
-  }
-
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1fr;
-    gap: 40px;
-    padding-bottom: 38px;
-    border-bottom: 1px solid rgba(255,255,255,.16);
-  }
-
-  footer h4 {
-    font-family: "Fraunces", serif;
-    font-size: 1.45rem;
-    margin-bottom: 12px;
-  }
-
-  footer p, footer a {
-    color: rgba(255,255,255,.75);
-    font-size: .94rem;
-    text-decoration: none;
-  }
-
-  footer a:hover { color: var(--lilac); }
-
-  .footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 14px;
-    padding-top: 22px;
-    font-size: .82rem;
-    color: rgba(255,255,255,.55);
-  }
-
-  @media (max-width: 950px) {
-    .grid { grid-template-columns: 1fr 1fr; }
-    .split { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .nav-links { display: none; }
-  }
-
-  @media (max-width: 620px) {
-    .grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .hero { padding: 70px 0 60px; }
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glow & Co. | Nail + Lash Boutique</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <header class="site-header">
+    <div class="wrap nav">
+      <a href="#home" class="logo">Glow <span>&</span> Co.</a>
 
-<header>
-  <div class="wrap nav">
-    <div class="logo">Glow <span>&</span> Co.</div>
-    <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#about">About</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#book">Contact</a>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#book">Contact</a>
+      </nav>
+
+      <a href="#book" class="btn btn-primary">Book Now</a>
     </div>
-    <a href="#book" class="btn btn-primary">Book Now</a>
-  </div>
-</header>
+  </header>
 
-<main>
-  <section class="hero">
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap">
+        <span class="tag">Nails + Lashes + Brows</span>
+
+        <h1>
+          Look polished.<br />
+          Feel <em>unforgettable.</em>
+        </h1>
+
+        <p>
+          Glow & Co. is your modern boutique for elevated nails, lash extensions,
+          brow styling, and low-maintenance beauty—all in one welcoming space.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#book" class="btn btn-primary">Book Your Appointment</a>
+          <a href="#services" class="btn btn-outline">View Services</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>NOW BOOKING NEW CLIENTS *</span>
+        <span>NAILS *</span>
+        <span>LASHES *</span>
+        <span>BROWS *</span>
+        <span>NOW BOOKING NEW CLIENTS *</span>
+        <span>NAILS *</span>
+        <span>LASHES *</span>
+        <span>BROWS *</span>
+      </div>
+    </div>
+
+    <section class="questions">
+      <div class="wrap">
+        <h2>
+          Want nails that turn heads?
+          <br />
+          <span>Lashes that feel effortless?</span>
+        </h2>
+
+        <p>
+          Whether you’re preparing for an event or simply want to feel more put
+          together every day, Glow & Co. makes beauty feel easy, personal, and polished.
+        </p>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Our Services</h2>
+          <p>
+            Choose from our most-loved nail, lash, and brow services. Every appointment
+            includes a consultation so we can tailor the look to you.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="service">
+            <div class="icon bg-indigo">💅</div>
+            <h3>Classic Manicure</h3>
+            <p>
+              Nail shaping, cuticle care, buffing, hand massage, and a flawless polish finish.
+            </p>
+            <div class="service-foot">
+              <span>From $38</span>
+              <span>45 min</span>
+            </div>
+            <a href="#book" class="service-link">Get Started</a>
+          </article>
+
+          <article class="service">
+            <div class="icon bg-lilac">✨</div>
+            <h3>Gel Manicure</h3>
+            <p>
+              A glossy, long-lasting gel finish with expert prep, cuticle care, and color of choice.
+            </p>
+            <div class="service-foot">
+              <span>From $55</span>
+              <span>60 min</span>
+            </div>
+            <a href="#book" class="service-link">Get Started</a>
+          </article>
+
+          <article class="service">
+            <div class="icon bg-pink">🎨</div>
+            <h3>Nail Art</h3>
+            <p>
+              Minimalist accents, French tips, chrome, seasonal designs, and custom nail art.
+            </p>
+            <div class="service-foot">
+              <span>From $15+</span>
+              <span>Varies</span>
+            </div>
+            <a href="#book" class="service-link">Get Started</a>
+          </article>
+
+          <article class="service">
+            <div class="icon bg-lilac">👁️</div>
+            <h3>Classic Lash Extensions</h3>
+            <p>
+              Individual extensions for a clean, natural, defined look that enhances your own lashes.
+            </p>
+            <div class="service-foot">
+              <span>From $125</span>
+              <span>2 hrs</span>
+            </div>
+            <a href="#book" class="service-link">Get Started</a>
+          </article>
+
+          <article class="service">
+            <div class="icon bg-indigo">💫</div>
+            <h3>Volume Lash Extensions</h3>
+            <p>
+              Lightweight volume fans for a fuller, softer, more dramatic lash transformation.
+            </p>
+            <div class="service-foot">
+              <span>From $165</span>
+              <span>2.5 hrs</span>
+            </div>
+            <a href="#book" class="service-link">Get Started</a>
+          </article>
+
+          <article class="service">
+            <div class="icon bg-pink">🌸</div>
+            <h3>Lash Lift + Tint</h3>
+            <p>
+              A low-maintenance treatment that lifts, curls, and darkens your natural lashes.
+            </p>
+            <div class="service-foot">
+              <span>From $95</span>
+              <span>75 min</span>
+            </div>
+            <a href="#book" class="service-link">Get Started</a>
+          </article>
+
+          <article class="service">
+            <div class="icon bg-indigo">🪞</div>
+            <h3>Lash Fill</h3>
+            <p>
+              Refresh existing extensions, replace grown-out lashes, and maintain your full look.
+            </p>
+            <div class="service-foot">
+              <span>From $65</span>
+              <span>60–90 min</span>
+            </div>
+            <a href="#book" class="service-link">Get Started</a>
+          </article>
+
+          <article class="service">
+            <div class="icon bg-lilac">🧖‍♀️</div>
+            <h3>Brow Shaping + Tint</h3>
+            <p>
+              Custom shaping, tinting, and finishing for balanced, polished brows.
+            </p>
+            <div class="service-foot">
+              <span>From $45</span>
+              <span>45 min</span>
+            </div>
+            <a href="#book" class="service-link">Get Started</a>
+          </article>
+
+          <article class="service">
+            <div class="icon bg-pink">🎀</div>
+            <h3>Luxury Pedicure</h3>
+            <p>
+              Warm soak, exfoliation, nail shaping, cuticle care, massage, and polish.
+            </p>
+            <div class="service-foot">
+              <span>From $60</span>
+              <span>60 min</span>
+            </div>
+            <a href="#book" class="service-link">Get Started</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="wrap split">
+        <div>
+          <h2>Beauty that fits your real life.</h2>
+
+          <p>
+            Glow & Co. was created for clients who want more than an appointment—they
+            want a moment to reset. We pair elevated technique with a calm, judgment-free
+            boutique experience.
+          </p>
+
+          <ul class="pill-list">
+            <li>Personalized consultations</li>
+            <li>Sanitary, detail-focused care</li>
+            <li>Trend-forward styles</li>
+            <li>Easy online booking</li>
+            <li>Welcoming atmosphere</li>
+          </ul>
+
+          <a href="#book" class="btn btn-primary">Plan Your Visit</a>
+        </div>
+
+        <div class="visual">
+          <h3>Your go-to space for nails, lashes, and a little extra glow.</h3>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews" id="reviews">
+      <div class="wrap">
+        <h2>What clients are saying</h2>
+
+        <div class="review-track">
+          <article class="review">
+            <p>“My lashes look so natural but make such a difference. I get compliments constantly.”</p>
+            <strong>— Amara, Lash Client</strong>
+          </article>
+
+          <article class="review">
+            <p>“The cleanest, most relaxing nail appointment I’ve had. My gel manicure lasted weeks.”</p>
+            <strong>— Jasmine, Nail Client</strong>
+          </article>
+
+          <article class="review">
+            <p>“They truly listen to what you want. I left feeling polished and so confident.”</p>
+            <strong>— Brianna, Brow Client</strong>
+          </article>
+
+          <article class="review">
+            <p>“Beautiful space, kind team, and flawless lash fill every time.”</p>
+            <strong>— Maya, Lash Client</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" id="book">
+      <div class="wrap">
+        <h2>Give yourself the glow you deserve.</h2>
+        <p>
+          Book your nail, lash, or brow appointment online today. New clients are welcome,
+          and appointments fill quickly.
+        </p>
+
+        <a href="#" class="btn btn-primary">Book an Appointment</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
     <div class="wrap">
-      <span class="tag">Nails + Lashes + Brows</span>
-      <h1>Look polished. Feel <em>unforgettable.</em></h1>
-      <p>Glow & Co. is your modern boutique for elevated nails, lash extensions, brow styling, and low-maintenance beauty—all in one welcoming space.</p>
-      <div class="hero-actions">
-        <a href="#book" class="btn btn-primary">Book Your Appointment</a>
-        <a href="#services" class="btn btn-outline">View Services</a>
+      <div class="footer-grid">
+        <div>
+          <h4>Glow & Co.</h4>
+          <p>A modern nail + lash boutique for effortless, elevated beauty.</p>
+        </div>
+
+        <div>
+          <p>
+            <strong>Visit</strong><br />
+            123 Beauty Lane<br />
+            Your City, ST 00000
+          </p>
+        </div>
+
+        <div>
+          <p>
+            <strong>Contact</strong><br />
+            <a href="tel:+10000000000">(000) 000-0000</a><br />
+            <a href="mailto:hello@glowandco.com">hello@glowandco.com</a>
+          </p>
+        </div>
+
+        <div>
+          <p>
+            <strong>Hours</strong><br />
+            Tue–Sat: 10am–7pm<br />
+            Sun–Mon: By appointment
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 Glow & Co. All rights reserved.</span>
+        <span>Instagram · TikTok · Booking</span>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <div class="marquee">
-    <div class="marquee-track">
-      <span>NOW BOOKING NEW CLIENTS *</span>
-      <span>NAILS *</span>
-      <span>LASHES *</span>
-      <span>BROWS *</span>
-      <span>NOW BOOKING NEW CLIENTS *</span>
-      <span>NAILS *</span>
-      <span>LASHES *</span>
-      <span>BROWS *</span>
-    </div>
-  </div>
-
-  <section class="questions">
-    <div class="wrap">
-      <h2>Want nails that turn heads? <br><span>Lashes that feel effortless?</span></h2>
-      <p>Whether you’re preparing for an event or simply want to feel more put together every day, Glow & Co. makes beauty feel easy, personal, and polished.</p>
-    </div>
-  </section>
-
-  <section class="services" id="services">
-    <div class="wrap">
-      <div class="section-head">
-        <h2>Our Services</h2>
-        <p>Choose from our most-loved nail, lash, and brow services. Every appointment includes a consultation so we can tailor the look to you.</p>
-      </div>
-
-      <div class="grid">
-        <article class="service">
-          <div class="icon bg-indigo">💅</div>
-          <h3>Classic Manicure</h3>
-          <p>Nail shaping, cuticle care, buffing, hand massage, and a flawless polish finish.</p>
-          <div class="service-foot"><span>From $38</span><span>45 min</span></div>
-          <a href="#book" class="service-link">Get Started</a>
-        </article>
-
-        <article class="service">
-          <div class="icon bg-lilac">✨</div>
-          <h3>Gel Manicure</h3>
-          <p>A glossy, long-lasting gel finish with expert prep, cuticle care, and color of choice.</p>
-          <div class="service-foot"><span>From $55</span><span>60 min</span></div>
-          <a href="#book" class="service-link">Get Started</a>
-        </article>
-
-        <article class="service">
-          <div class="icon bg-pink">🎨</div>
-          <h3>Nail Art</h3>
-          <p>Minimalist accents, French tips, chrome, seasonal designs, and custom nail art.</p>
-          <div class="service-foot"><span>From $15+</span><span>Varies</span></div>
-          <a href="#book" class="service-link">Get Started</a>
-        </article>
-
-        <article class="service">
-          <div class="icon bg-lilac">👁️</div>
-          <h3>Classic Lash Extensions</h3>
-          <p>Individual extensions for a clean, natural, defined look that enhances your own lashes.</p>
-          <div class="service-foot"><span>From $125</span><span>2 hrs</span></div>
-          <a href="#book" class="service-link">Get Started</a>
-        </article>
-
-        <article class="service">
-          <div class="icon bg-indigo">💫</div>
-          <h3>Volume Lash Extensions</h3>
-          <p>Lightweight volume fans for a fuller, softer, more dramatic lash transformation.</p>
-          <div class="service-foot"><span>From $165</span><span>2.5 hrs</span></div>
-          <a href="#book" class="service-link">Get Started</a>
-        </article>
-
-        <article class="service">
-          <div class="icon bg-pink">🌸</div>
-          <h3>Lash Lift + Tint</h3>
-          <p>A low-maintenance treatment that lifts, curls, and darkens your natural lashes.</p>
-          <div class="service-foot"><span>From $95</span><span>75 min</span></div>
-          <a href="#book" class="service-link">Get Started</a>
-        </article>
-
-        <article class="service">
-          <div class="icon bg-indigo">🪞</div>
-          <h3>Lash Fill</h3>
-          <p>Refresh existing extensions, replace grown-out lashes, and maintain your full look.</p>
-          <div class="service-foot"><span>From $65</span><span>60–90 min</span></div>
-          <a href="#book" class="service-link">Get Started</a>
-        </article>
-
-        <article class="service">
-          <div class="icon bg-lilac">🧖‍♀️</div>
-          <h3>Brow Shaping + Tint</h3>
-          <p>Custom shaping, tinting, and finishing for balanced, polished brows.</p>
-          <div class="service-foot"><span>From $45</span><span>45 min</span></div>
-          <a href="#book" class="service-link">Get Started</a>
-        </article>
-
-        <article class="service">
-          <div class="icon bg-pink">🎀</div>
-          <h3>Luxury Pedicure</h3>
-          <p>Warm soak, exfoliation, nail shaping, cuticle care, massage, and polish.</p>
-          <div class="service-foot"><span>From $60</span><span>60 min</span></div>
-          <a href="#book" class="service-link">Get Started</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="about" id="about">
-    <div class="wrap split">
-      <div>
-        <h2>Beauty that fits your real life.</h2>
-        <p>Glow & Co. was created for clients who want more than an appointment—they want a moment to reset. We pair elevated technique with a calm, judgment-free boutique experience.</p>
-        <ul class="pill-list">
-          <li>Personalized consultations</li>
-          <li>Sanitary, detail-focused care</li>
-          <li>Trend-forward styles</li>
-          <li>Easy online booking</li>
-          <li>Welcoming atmosphere</li>
-        </ul>
-        <a href="#book" class="btn btn-primary">Plan Your Visit</a>
-      </div>
-
-      <div class="visual">
-        <h3>Your go-to space for nails, lashes, and a little extra glow.</h3>
-      </div>
-    </div>
-  </section>
-
-  <section class="reviews" id="reviews">
-    <div class="wrap">
-      <h2>What clients are saying</h2>
-      <div class="review-track">
-        <article class="review">
-          <p>“My lashes look so natural but make such a difference. I get compliments constantly.”</p>
-          <strong>— Amara, Lash Client</strong>
-        </article>
-        <article class="review">
-          <p>“The cleanest, most relaxing nail appointment I’ve had. My gel manicure lasted weeks.”</p>
-          <strong>— Jasmine, Nail Client</strong>
-        </article>
-        <article class="review">
-          <p>“They truly listen to what you want. I left feeling polished and so confident.”</p>
-          <strong>— Brianna, Brow Client</strong>
-        </article>
-        <article class="review">
-          <p>“Beautiful space, kind team, and flawless lash fill every time.”</p>
-          <strong>— Maya, Lash Client</strong>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="booking" id="book">
-    <div class="wrap">
-      <h2>Give yourself the glow you deserve.</h2>
-      <p>Book your nail, lash, or brow appointment online today. New clients are welcome, and appointments fill quickly.</p>
-      <a href="#" class="btn btn-primary">Book an Appointment</a>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Glow & Co.</h4>
-        <p>A modern nail + lash boutique for effortless, elevated beauty.</p>
-      </div>
-      <div>
-        <p><strong>Visit</strong><br>123 Beauty Lane<br>Your City, ST 00000</p>
-      </div>
-      <div>
-        <p><strong>Contact</strong><br><a href="tel:+10000000000">(000) 000-0000</a><br><a href="mailto:hello@glowandco.com">hello@glowandco.com</a></p>
-      </div>
-      <div>
-        <p><strong>Hours</strong><br>Tue–Sat: 10am–7pm<br>Sun–Mon: By appointment</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Glow & Co. All rights reserved.</span>
-      <span>Instagram · TikTok · Booking</span>
-    </div>
-  </div>
-</footer>
-
+  <script src="script.js"></script>
 </body>
 </html>
